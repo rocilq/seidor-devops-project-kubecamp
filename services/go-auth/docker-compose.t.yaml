@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  app-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    depends_on:
+      - db
+    environment:
+      - PORT=8081
+      - SECRET_KEY=myKey
+      - MONGO_URI=mongodb://root:psw@db:27018/users
+    ports:
+      - "8081:8080"
+
+  db:
+    image: mongo:latest
+    ports:
+      - "27018:27017"

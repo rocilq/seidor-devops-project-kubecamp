@@ -1,0 +1,418 @@
+{
+	"info": {
+		"_postman_id": "6104de51-3dce-4a48-b34b-1b03eba35e52",
+		"name": "Kubecamp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3824"
+	},
+	"item": [
+		{
+			"name": "Catalog get courses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/catalog/api/courses",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"catalog",
+						"api",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Catalog new course",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Course Name\",\n  \"description\": \"Course Description\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/catalog/api/courses",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"catalog",
+						"api",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Catalog get single course",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/catalog/api/courses/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"catalog",
+						"api",
+						"courses",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Catalog get course lessons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/catalog/api/courses/1/lessons",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"catalog",
+						"api",
+						"courses",
+						"1",
+						"lessons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Catalog append lesson to course",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Lesson Title\",\n  \"description\": \"Lesson Content\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/catalog/api/courses/1/lessons",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"catalog",
+						"api",
+						"courses",
+						"1",
+						"lessons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Catalog get single lesson",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/catalog/api/lessons/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"catalog",
+						"api",
+						"lessons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Discuss /",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/discuss/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"discuss",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Discuss get by lesson",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/discuss/discussions/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"discuss",
+						"discussions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Discuss new comment on lesson",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"name": "Authorization",
+						"type": "text",
+						"value": "Bearer your_token_here"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lessonId\": \"1\",\n    \"title\": \"My view on what a pod is\",\n    \"content\": \"Pod is a group of whales (aka docker), so a pod is a group of containers swimming together.\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/discuss/discussions/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"discuss",
+						"discussions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"pepe@email.com\",\n    \"password\": \"pepesPassword\",\n    \"username\": \"pepe\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/users",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth validate token",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBlcGUiLCJpZCI6IjY0ZmYyYmYwMTY2MWVmYjQzNDg2ZGYzMSIsImV4cCI6MTY5NDUzNTA0MH0.Sfduag9Q5tEpAW4XXR3MgZ5Tcs6-v5oaRP2F0ESFsfw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/validate",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"validate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pepesPassword",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "pepe@email.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Progress get progress by user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer YOUR_JWT_TOKEN"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/progress/progress/123",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"progress",
+						"progress",
+						"123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Progress add progress by user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer YOUR_JWT_TOKEN"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lessonId\": 11\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/progress/progress/123",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"progress",
+						"progress",
+						"123"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost",
+			"type": "string"
+		}
+	]
+}

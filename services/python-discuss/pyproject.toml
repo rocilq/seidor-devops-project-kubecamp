@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "kubecamp-discuss"
+version = "1.0.0"
+description = ""
+authors = ["Edu Iñigo <edu@arol.dev>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.103.1"
+uvicorn = "^0.23.2"
+pymongo = "^4.5.0"
+python-dotenv = "^1.0.0"
+requests = "^2.31.0"
+pydantic = "^2.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+dev = "dev:start"

@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  my-go-app:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    ports:
+      - 8082:8080
+    volumes:
+      - .:/app
+    tty: true
+    environment:
+      MONGO_URI: "mongodb://root:psw@mongo:27017/users?connect=direct&authSource=admin"
+      PORT: 8080
+      SECRET_KEY: pJmJmc4qnEX8/cG/h47zj++9CsFCJY2sda44oFu/USyB6ONEyUO8rg2VdiyvDPYw
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: psw
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d
+volumes:
+  mongodb_data:

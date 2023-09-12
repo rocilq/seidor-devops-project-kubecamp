@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "63b85c41-979f-4090-ad38-09b3d3229c14",
+		"name": "DevOps Bootcamp API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3824"
+	},
+	"item": [
+		{
+			"name": "GET /api/courses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/courses",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/courses",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Course Name\",\n  \"description\": \"Course Description\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/courses",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/courses/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/courses/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"courses",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/courses/{id}/lessons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/courses/1/lessons",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"courses",
+						"1",
+						"lessons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/courses/{id}/lessons",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Lesson Title\",\n  \"description\": \"Lesson Content\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/courses/1/lessons",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"courses",
+						"1",
+						"lessons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/lessons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/lessons",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"lessons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/lessons/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/lessons/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"lessons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
