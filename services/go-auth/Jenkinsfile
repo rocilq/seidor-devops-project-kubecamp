@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clonar el repositorio de código
+                checkout scm
+            }
+        }
+        
+        stage('Build and Test') {
+            steps {
+                dir('services/go-auth') {
+                    
+                    // Construir una imagen Docker
+                    sh 'docker build -t my-gotest-image:latest -f Dockerfile.test .'
+
+                    sh 'docker run --rm my-gotest-image:latest'
+
+                }
+            }
+        }
+        
+        stage('Static Code Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'sonarqube_5.0'
+                    withSonarQubeEnv(installationName: 'aroldev sonarqube') {
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=rocio-project-go -Dsonar.sources=./services/go-auth -Dsonar.exclusions=**/*_test.go -Dsonar.tests=./services/go-auth -Dsonar.test.inclusions=**/*_test.go"
+                    }
+                }
+            }
+        }
+        
+        stage('Docker Image') {
+            steps {
+                dir('services/go-auth') {
+                    // Construir una imagen Docker
+                    sh 'docker build -t rocio17/go-test-rocio:latest -f Dockerfile .' // Ajusta el nombre y la versión
+                }
+            }
+        }
+        
+        stage('Push to DockerHub') {
+            steps {
+                dir('services/go-auth') {
+                    // Subir la imagen a DockerHub
+                    withCredentials([usernamePassword(credentialsId: 'rocio.dockerhub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                        sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+                        sh 'docker push rocio17/go-test-rocio:latest' // Ajusta el nombre y la versión
+                    }
+                }
+            }
+        }
+    }
+}

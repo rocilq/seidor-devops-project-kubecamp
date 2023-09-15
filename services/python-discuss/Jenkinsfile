@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clonar el repositorio de código
+                checkout scm
+            }
+        }
+        
+        stage('Static Code Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'sonarqube_5.0'
+                    withSonarQubeEnv(installationName: 'aroldev sonarqube') {
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=rocio-project-python -Dsonar.sources=./services/python-discuss -Dsonar.inclusions=**/*.py"
+                    }
+                }
+            }
+        }
+
+        stage('Docker Image') {
+            steps {
+                dir('services/python-discuss') {
+                    // Construir una imagen Docker
+                    sh 'docker build -t rocio17/python-discuss:latest -f Dockerfile .' // Ajusta el nombre y la versión
+                }
+            }
+        }
+        
+        stage('Push to DockerHub') {
+            steps {
+                dir('services/python-discuss') {
+                    // Subir la imagen a DockerHub
+                    withCredentials([usernamePassword(credentialsId: 'rocio.dockerhub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                        sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+                        sh 'docker push rocio17/python-discuss:latest' // Ajusta el nombre y la versión
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,9 +1,9 @@
 version: '3'
 services:
-  php:
+  php-progress:
     build: 
       context: .
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - ./:/var/www/html
     ports:
@@ -20,7 +20,7 @@ services:
     volumes:
     - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
-      - php
+      - php-progress
   mongo:
     image: mongo:latest
     ports:

@@ -2,7 +2,7 @@ services:
   kubecamp.catalog:
     build:
       context: ../
-      dockerfile: .docker/dev.Dockerfile
+      dockerfile: .docker/Dockerfile
     tty: true
     restart: unless-stopped
     environment:

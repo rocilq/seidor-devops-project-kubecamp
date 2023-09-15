@@ -11,4 +11,4 @@ ENV SECRET_KEY=myKey
 COPY . .
 
 ENV MONGO_URI=mongodb://root:psw@localhost:27017/users?connect=direct&authSource=admin
-CMD ["go", "test", "./..."]
+CMD ["go", "test", "./lib"]

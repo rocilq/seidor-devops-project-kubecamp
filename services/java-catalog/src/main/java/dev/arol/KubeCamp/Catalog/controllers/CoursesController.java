@@ -44,7 +44,7 @@ public class CoursesController {
   @PostMapping
   public ResponseEntity<Course> addCourse(@RequestBody Course course) {
     try {
-      return new ResponseEntity<Course>(course, null, HttpStatus.OK);
+      return new ResponseEntity<Course>(course, null, HttpStatus.CREATED);
     } catch (Exception e) {
       return ResponseEntity.badRequest().build();
     }
