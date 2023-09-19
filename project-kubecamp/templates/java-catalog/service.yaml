@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.java_catalog.name }}
+  labels:
+    {{- include "project-kubecamp.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.java_catalog.port }}  # Utiliza el valor definido en values.yaml para go-auth
+      targetPort: http
+      protocol: TCP
+      name: http
+  containers:
+  - name: java_catalog
+    image: {{ .Values.java_catalog.image }}
+  selector:
+    {{- include "project-kubecamp.selectorLabels" . | nindent 4 }}
