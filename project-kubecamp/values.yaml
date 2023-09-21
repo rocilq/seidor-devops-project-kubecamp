@@ -58,22 +58,22 @@ ingress:
 
 #Configuración específica para los microservicios
 go_auth:
-  name: go_auth
+  name: go-auth
   image: rocio17/go-test-rocio:latest
   port: 8080
 
 java_catalog:
-  name: java_catalog
+  name: java-catalog
   image: rocio17/java-catalog-rocio:latest
   port: 8081
 
 php_progress:
-  name: php_progress
+  name: php-progress
   image: rocio17/php-progress:latest
   port: 9000
 
 python_discuss:
-  name: python_discuss
+  name: python-discuss
   image: rocio17/python-discuss:latest
   port: 8083
 

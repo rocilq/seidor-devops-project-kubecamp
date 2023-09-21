@@ -2,8 +2,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.php_progress.name }}
-  labels:
-    {{- include "project-kubecamp.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -14,5 +12,3 @@ spec:
   containers:
   - name: php_progress
     image: {{ .Values.php_progress.image }}
-  selector:
-    {{- include "project-kubecamp.selectorLabels" . | nindent 4 }}
